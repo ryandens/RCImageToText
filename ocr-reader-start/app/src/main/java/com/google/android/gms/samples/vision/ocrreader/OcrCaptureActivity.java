@@ -59,6 +59,7 @@ import java.util.Locale;
  */
 public final class OcrCaptureActivity extends AppCompatActivity {
     private static final String TAG = "OcrCaptureActivity";
+    public static final String TextKey = "image.text.data";
 
     // Intent request code to handle updating play services if needed.
     private static final int RC_HANDLE_GMS = 9001;
@@ -281,6 +282,12 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                 .setMessage(R.string.no_camera_permission)
                 .setPositiveButton(R.string.ok, listener)
                 .show();
+    }
+
+    public void processText(View view) {
+        Intent intent = new Intent(this, ProcessTextActivity.class);
+        intent.putExtra(this.TextKey, "I am the text");
+        startActivity(intent);
     }
 
     /**
