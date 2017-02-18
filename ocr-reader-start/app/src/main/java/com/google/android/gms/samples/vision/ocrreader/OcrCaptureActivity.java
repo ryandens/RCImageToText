@@ -59,6 +59,7 @@ import java.util.Locale;
  */
 public final class OcrCaptureActivity extends AppCompatActivity {
     private static final String TAG = "OcrCaptureActivity";
+    public static final String textKey = "image.text.data";
 
     // Intent request code to handle updating play services if needed.
     private static final int RC_HANDLE_GMS = 9001;
@@ -283,6 +284,11 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                 .show();
     }
 
+    public void processText(View view){
+        Intent intent = new Intent(this, ProcessTextActivity.class);
+        intent.putExtra(this.textKey, "This is text");
+        startActivity(intent);
+    }
     /**
      * Starts or restarts the camera source, if it exists.  If the camera source doesn't exist yet
      * (e.g., because onResume was called before the camera source was created), this will be called
