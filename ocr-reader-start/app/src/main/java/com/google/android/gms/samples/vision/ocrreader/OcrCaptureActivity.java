@@ -34,6 +34,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -82,6 +83,9 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
     // A TextToSpeech engine for speaking a String value.
     private TextToSpeech tts;
+
+    public static SparseArray<TextBlock> textBlocks;
+
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -286,7 +290,20 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
     public void processText(View view){
         Intent intent = new Intent(this, ProcessTextActivity.class);
-        intent.putExtra(this.textKey, "This is text");
+
+
+        String[] text = new String[textBlocks.size()];
+
+        for (int i = 0; i < textBlocks.size(); i++){
+            TextBlock item = textBlocks.valueAt(i);
+            if (item != null && item.getValue() != null) {
+                Log.d("Processor", "Text Detected" + item.getValue());
+            }
+
+            text[i] = item.getValue();
+        }
+
+        intent.putExtra(this.textKey, text);
         startActivity(intent);
     }
     /**

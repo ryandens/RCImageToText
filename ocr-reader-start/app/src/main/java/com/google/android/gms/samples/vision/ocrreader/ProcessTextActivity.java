@@ -10,6 +10,9 @@ public class ProcessTextActivity extends AppCompatActivity {
     //Displays text from previous activity
     private TextView displayText;
 
+    private String[] textBlocks;
+    private String text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +23,12 @@ public class ProcessTextActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String text = intent.getStringExtra(OcrCaptureActivity.textKey);
+        String[] vals = intent.getStringArrayExtra(OcrCaptureActivity.textKey);
+        text = "";
+        for (int i = 0; i < vals.length; i++) {
+            text += vals[i] + " ";
+        }
+        
         this.displayText.setText(text);
     }
 }

@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:text="self_destruct"
         android:onClick="processText"/>
-    
+
     <com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSourcePreview
         android:id="@+id/preview"
         android:layout_width="match_parent"

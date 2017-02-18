@@ -35,6 +35,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
     public void receiveDetections(Detector.Detections<TextBlock> detections) {
         mGraphicOverlay.clear();
         SparseArray<TextBlock> items = detections.getDetectedItems();
+        OcrCaptureActivity.textBlocks = items;
         for (int i = 0; i < items.size(); ++i) {
             TextBlock item = items.valueAt(i);
             if (item != null && item.getValue() != null) {
