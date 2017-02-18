@@ -8,6 +8,8 @@ import android.widget.TextView;
 public class ProcessTextActivity extends AppCompatActivity {
     /*Displays text from previous activity*/
     private TextView dispalyText;
+    private String[] textBlocks;
+    private String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +19,11 @@ public class ProcessTextActivity extends AppCompatActivity {
         this.dispalyText = (TextView) findViewById(R.id.dispalyText);
 
         Intent intent = getIntent();
-        String val = intent.getStringExtra(OcrCaptureActivity.TextKey);
-
-        this.dispalyText.setText(val);
+        String[] vals = intent.getStringArrayExtra(OcrCaptureActivity.TextKey);
+        text = "";
+        for(int i = 0; i < vals.length; i++) {
+            text += vals[i] + " ";
+        }
+        this.dispalyText.setText(text);
     }
 }
